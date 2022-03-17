@@ -5930,7 +5930,7 @@ MediumEditor.extensions = {};
             if (this.static) {
                 toolbar.className += ' static-toolbar';
             } else if (this.relativeContainer) {
-                toolbar.className += ' medium-editor-relative-toolbar';
+                // toolbar.className += ' medium-editor-relative-toolbar';
             } else {
                 toolbar.className += ' medium-editor-stalker-toolbar';
             }
@@ -6445,6 +6445,7 @@ MediumEditor.extensions = {};
                 elementsContainerAbsolute = ['absolute', 'fixed'].indexOf(window.getComputedStyle(elementsContainer).getPropertyValue('position')) > -1,
                 positions = {},
                 relativeBoundary = {},
+                scrollDom = document.querySelector('.container-scroll-view'),
                 middleBoundary, elementsContainerBoundary;
 
             // If container element is absolute / fixed, recalculate boundaries to be relative to the container
@@ -6468,7 +6469,7 @@ MediumEditor.extensions = {};
             }
 
             middleBoundary = boundary.left + boundary.width / 2;
-            positions.top += boundary.top - toolbarHeight;
+            positions.top += boundary.top - toolbarHeight - scrollDom.offsetTop + scrollDom.scrollTop;
 
             if (boundary.top < buttonHeight) {
                 toolbarElement.classList.add('medium-toolbar-arrow-over');
