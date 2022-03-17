@@ -1,7 +1,7 @@
 {
-  "name": "medium-editor",
-  "version": "5.23.3",
-  "author": "Davi Ferreira <hi@daviferreira.com>",
+  "name": "joinf-medium-editor",
+  "version": "1.0.0",
+  "author": "gaoxingl <54201425@qq.com>",
   "contributors": [
     {
       "name": "Nate Mielnik",
@@ -20,10 +20,10 @@
   "main": "dist/js/medium-editor.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yabwe/medium-editor"
+    "url": "https://github.com/gaoxingl/joinf-medium-editor"
   },
   "bugs": {
-    "url": "https://github.com/yabwe/medium-editor/issues",
+    "url": "https://github.com/gaoxingl/joinf-medium-editor/issues",
     "email": "hi@daviferreira.com"
   },
   "homepage": "http://yabwe.github.io/medium-editor/",
@@ -35,7 +35,7 @@
     "rich-text"
   ],
   "publishConfig": {
-    "registry": "http://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/"
   },
   "license": "MIT",
   "devDependencies": {
