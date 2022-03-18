@@ -5905,6 +5905,7 @@ MediumEditor.extensions = {};
             if (!this.relativeContainer) {
                 this.getEditorOption('elementsContainer').appendChild(this.getToolbarElement());
             } else {
+                this.relativeContainer.style.position = 'relative' // toolbar父节点设置为relative，确保toolbar可以跟随浮动
                 this.relativeContainer.appendChild(this.getToolbarElement());
             }
         },
@@ -6353,6 +6354,8 @@ MediumEditor.extensions = {};
                     } else {
                         this.positionToolbar(selection);
                     }
+                } else {
+                    this.positionToolbar(selection);
                 }
 
                 this.trigger('positionedToolbar', {}, this.base.getFocusedElement());
@@ -6445,7 +6448,8 @@ MediumEditor.extensions = {};
                 elementsContainerAbsolute = ['absolute', 'fixed'].indexOf(window.getComputedStyle(elementsContainer).getPropertyValue('position')) > -1,
                 positions = {},
                 relativeBoundary = {},
-                scrollDom = document.querySelector('.container-scroll-view'),
+                offsetDom = document.querySelector('.container-scroll-wrap'), // 通过toolbar的祖先节点获取，offset偏移量
+                scrollDom = document.querySelector('.container-scroll-view'), // 通过toolbar的父节点获取，scroll偏移量
                 middleBoundary, elementsContainerBoundary;
 
             // If container element is absolute / fixed, recalculate boundaries to be relative to the container
@@ -6469,7 +6473,7 @@ MediumEditor.extensions = {};
             }
 
             middleBoundary = boundary.left + boundary.width / 2;
-            positions.top += boundary.top - toolbarHeight - scrollDom.offsetTop + scrollDom.scrollTop;
+            positions.top += boundary.top - toolbarHeight - offsetDom.offsetTop + scrollDom.scrollTop;
 
             if (boundary.top < buttonHeight) {
                 toolbarElement.classList.add('medium-toolbar-arrow-over');
@@ -6482,13 +6486,13 @@ MediumEditor.extensions = {};
             }
 
             if (middleBoundary < halfOffsetWidth) {
-                positions.left = defaultLeft + halfOffsetWidth;
+                positions.left = defaultLeft + halfOffsetWidth - offsetDom.offsetLeft;
                 positions.right = 'initial';
             } else if ((containerWidth - middleBoundary) < halfOffsetWidth) {
                 positions.left = 'auto';
                 positions.right = 0;
             } else {
-                positions.left = defaultLeft + middleBoundary;
+                positions.left = defaultLeft + middleBoundary - offsetDom.offsetLeft;
                 positions.right = 'initial';
             }
 
