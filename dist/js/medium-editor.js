@@ -6448,8 +6448,8 @@ MediumEditor.extensions = {};
                 elementsContainerAbsolute = ['absolute', 'fixed'].indexOf(window.getComputedStyle(elementsContainer).getPropertyValue('position')) > -1,
                 positions = {},
                 relativeBoundary = {},
-                offsetDom = document.querySelector('.container-scroll-wrap'), // 通过toolbar的祖先节点获取，offset偏移量
-                scrollDom = document.querySelector('.container-scroll-view'), // 通过toolbar的父节点获取，scroll偏移量
+                offsetDom = document.querySelector('.template-edit-content'), // 通过toolbar的祖先节点获取，offset偏移量
+                scrollDom = document.querySelector('.container-scroll-wrap'), // 通过toolbar的父节点获取，scroll偏移量
                 middleBoundary, elementsContainerBoundary;
 
             // If container element is absolute / fixed, recalculate boundaries to be relative to the container
